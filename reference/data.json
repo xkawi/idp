@@ -1,0 +1,678 @@
+{
+    "customers": [
+        {
+            "nric": "S8475563H",
+            "name": "Jane Koh Hui Min",
+            "accno": "73655890",
+            "contact": "87773847",
+            "email": "JaneKoh@Gmail.com",
+            "address": "113 Hougang Central #04-120 Singapore 815113"
+        },
+        {
+            "nric": "S8061560D",
+            "name": "Dick Teh Hui Yang",
+            "accno": "12443170",
+            "contact": "88933012",
+            "email": "Tayhuiyang@Hotmail.com",
+            "address": "665 Hougang Drive #14-10 Singapore 815665"
+        },
+        {
+            "nric": "S74135319B",
+            "name": "Coronie Lim Cheng Yan",
+            "accno": "12046731",
+            "contact": "97184759",
+            "email": "clcy@Gmail.com",
+            "address": "11 Highland Road #01-15 Singapore 462011"
+        },
+        {
+            "nric": "S76833650P",
+            "name": "Vandan Yong Cheng Yee",
+            "accno": "74655783",
+            "contact": "87667491",
+            "email": "PrettyVanda@Gmail.com",
+            "address": "113 Bukit Timah #02-120 Singapore 715113"
+        },
+        {
+            "nric": "S8874463W",
+            "name": "Sonia Rina Moto ",
+            "accno": "32168481",
+            "contact": "98001135",
+            "email": "RinaSonia@Gmail.com",
+            "address": "187 Bedok North Drive #09-151 Singapore 750187"
+        },
+        {
+            "nric": "S6783857K",
+            "name": "Mario Cheng",
+            "accno": "72600845",
+            "contact": "87557489",
+            "email": "SuperMario@Gmail.com",
+            "address": "60 Rivervale Drive #09-50 Singapore 830060"
+        },
+        {
+            "nric": "S80454468D",
+            "name": "Oliver Queen",
+            "accNo": "12312312",
+            "contact": "87773847",
+            "email": "JaneKoh@Gmail.com",
+            "address": "113 Sengkang Drive #04-120 Singapore 815113"
+        },
+        {
+            "nric": "S8071263H",
+            "name": "Alicia Mey",
+            "accno": "21345678",
+            "contact": "87667509",
+            "email": "AliciaMey@Gmail.com",
+            "address": "113 Bukit Timah #02-120 Singapore 715113",
+            "error": true
+        }
+    ],
+    "services": [
+        {
+            "serviceId": "S1",
+            "serviceType": "Gas",
+            "tasks": [
+                {
+                    "name": "General Site Inspection"
+                },
+                {
+                    "name": "Terminate Gas Supply"
+                },
+                {
+                    "name": "Activate Gas Supply"
+                },
+                {
+                    "name": "Replacement of Gas Meter"
+                },
+                {
+                    "name": "Extension of Gas Supply Location"
+                },
+                {
+                    "name": "Temporary Gas Supply"
+                },
+                {
+                    "name": "Urgent Repair Works"
+                }
+            ],
+            "availabletimes": [
+                {
+                    "id": "09301030",
+                    "value": "0930-1030"
+                },
+                {
+                    "id": "10301130",
+                    "value": "1030-1130"
+                },
+                {
+                    "id": "11301230",
+                    "value": "1130-1230"
+                },
+                {
+                    "id": "12301330",
+                    "value": "1230-1330"
+                },
+                {
+                    "id": "13301430",
+                    "value": "1330-1430"
+                },
+                {
+                    "id": "14301530",
+                    "value": "1430-1530"
+                },
+                {
+                    "id": "15301630",
+                    "value": "1530-1630"
+                },
+                {
+                    "id": "16301730",
+                    "value": "1630-1730"
+                },
+                {
+                    "id": "17301830",
+                    "value": "1730-1830"
+                },
+                {
+                    "id": "18301930",
+                    "value": "1830-1930"
+                }
+            ]
+        },
+        {
+            "serviceId": "S2",
+            "serviceType": "Water",
+            "tasks": [
+                {
+                    "name": "General Site Inspection"
+                },
+                {
+                    "name": "Terminate Water Supply"
+                },
+                {
+                    "name": "Activate Water Supply"
+                },
+                {
+                    "name": "Replacement of Water Meter"
+                },
+                {
+                    "name": "Extension of Water Supply Location"
+                },
+                {
+                    "name": "Temporary Water Supply"
+                },
+                {
+                    "name": "Urgent Repair Works"
+                }
+            ],
+            "availabletimes": [
+                {
+                    "id": "09301030",
+                    "value": "0930-1030"
+                },
+                {
+                    "id": "10301130",
+                    "value": "1030-1130"
+                },
+                {
+                    "id": "11301230",
+                    "value": "1130-1230"
+                },
+                {
+                    "id": "12301330",
+                    "value": "1230-1330"
+                },
+                {
+                    "id": "13301430",
+                    "value": "1330-1430"
+                },
+                {
+                    "id": "14301530",
+                    "value": "1430-1530"
+                },
+                {
+                    "id": "15301630",
+                    "value": "1530-1630"
+                },
+                {
+                    "id": "16301730",
+                    "value": "1630-1730"
+                },
+                {
+                    "id": "17301830",
+                    "value": "1730-1830"
+                },
+                {
+                    "id": "18301930",
+                    "value": "1830-1930"
+                }
+            ]
+        },
+        {
+            "serviceId": "S3",
+            "serviceType": "Electricity",
+            "tasks": [
+                {
+                    "name": "General Site Inspection"
+                },
+                {
+                    "name": "Terminate Electricity Supply"
+                },
+                {
+                    "name": "Activate Electricity Supply"
+                },
+                {
+                    "name": "Replacement of Electricity Meter"
+                },
+                {
+                    "name": "Extension of Electricity Supply Location"
+                },
+                {
+                    "name": "Temporary Electricity Supply"
+                },
+                {
+                    "name": "Urgent Repair Works"
+                }
+            ],
+            "availabletimes": [
+                {
+                    "id": "09301030",
+                    "value": "0930-1030"
+                },
+                {
+                    "id": "10301130",
+                    "value": "1030-1130"
+                },
+                {
+                    "id": "11301230",
+                    "value": "1130-1230"
+                },
+                {
+                    "id": "12301330",
+                    "value": "1230-1330"
+                },
+                {
+                    "id": "13301430",
+                    "value": "1330-1430"
+                },
+                {
+                    "id": "14301530",
+                    "value": "1430-1530"
+                },
+                {
+                    "id": "15301630",
+                    "value": "1530-1630"
+                },
+                {
+                    "id": "16301730",
+                    "value": "1630-1730"
+                },
+                {
+                    "id": "17301830",
+                    "value": "1730-1830"
+                },
+                {
+                    "id": "18301930",
+                    "value": "1830-1930"
+                }
+            ]
+        }
+    ],
+    "leaderboard": [
+        {
+            "CSOID": "CSOMISHKATAN",
+            "CSOName": "Mishka Tan",
+            "Score": "13:38"
+        },
+        {
+            "CSOID": "CSOTOMASHARRY",
+            "CSOName": "Thomas Harry",
+            "Score": "15:31"
+        },
+        {
+            "CSOID": "CSOMATTHEWCHEAH",
+            "CSOName": "Matthew Cheah",
+            "Score": "10:31"
+        },
+        {
+            "CSOID": "CSOKAWI",
+            "CSOName": "Kawi",
+            "Score": "09:31"
+        },
+        {
+            "CSOID": "CSOEUGENELOW",
+            "CSOName": "Eugene Low",
+            "Score": "12:71"
+        },
+        {
+            "CSOID": "CSOJOANNAPHOON",
+            "CSOName": "Joanna Phoon",
+            "Score": "15:02"
+        },
+        {
+            "CSOID": "CSOTHOMASTAY",
+            "CSOName": "Thomas Tay",
+            "Score": "14:02"
+        },
+        {
+            "CSOID": "CSOJEREMYTAY",
+            "CSOName": "Jeremy Tan",
+            "Score": "19:38"
+        },
+        {
+            "CSOID": "CSOBOONWEE",
+            "CSOName": "Boon Wee",
+            "Score": "09:52"
+        },
+        {
+            "CSOID": "CSOJAMIE",
+            "CSOName": "Jamie",
+            "Score": "13:29"
+        },
+        {
+            "CSOID": "CSOJULIETAN",
+            "CSOName": "Julie Tan",
+            "Score": "07:35"
+        },
+        {
+            "CSOID": "CSODANNY",
+            "CSOName": "Danny",
+            "Score": "17:56"
+        },
+        {
+            "CSOID": "CSOPUNNIE",
+            "CSOName": "Punnien",
+            "Score": "09:55"
+        },
+        {
+            "CSOID": "CSOANDY",
+            "CSOName": "Andy",
+            "Score": "13:31"
+        },
+        {
+            "CSOID": "CSOHAPPY",
+            "CSOName": "Happy",
+            "Score": "10:72"
+        },
+        {
+            "CSOID": "CSOGRUMPY",
+            "CSOName": "Grumpy",
+            "Score": "13:17"
+        },
+        {
+            "CSOID": "CSOBUMPY",
+            "CSOName": "Bumpy",
+            "Score": "11:69"
+        },
+        {
+            "CSOID": "CSOSNEEZY",
+            "CSOName": "Sneezy",
+            "Score": "14:61"
+        },
+        {
+            "CSOID": "CSODANIEL",
+            "CSOName": "Daniel",
+            "Score": "18:02"
+        },
+        {
+            "CSOID": "CSOHUIQI",
+            "CSOName": "Huiqi",
+            "Score": "15:22"
+        }
+    ],
+    "customer_appointments": [
+        {
+            "CustomerAccNo": 73655890,
+            "nric": "S8475563H",
+            "services": [
+                {
+                    "serviceId": "S1",
+                    "serviceType": "Gas",
+                    "active" : true,
+                    "appointments": [
+                        {
+                            "appt_id": "A1",
+                            "created_at": "10/03/2013 10:33:10",
+                            "CSOID": "CSOMISHKATAN",
+                            "CSOName": "Mishka Tan",
+                            "date": "2013-04-20",
+                            "time": "1230-1330",
+                            "task": "Replacement of Gas Meter",
+                            "status": "COMPLETED",
+                            "completed": true,
+                            "remark": null
+                        },
+                        {
+                            "appt_id": "A8",
+                            "created_at": "13/03/2014 16:12:03",
+                            "CSOID": "CSOMISHKATAN",
+                            "CSOName": "Mishka Tan",
+                            "date": "2014-05-05",
+                            "time": "1000-1100",
+                            "task": "Temporary Gas Supply",
+                            "status": "PENDING",
+                            "completed": false,
+                            "remark": null
+                        }
+                    ]
+                },
+                {
+                    "serviceId": "S2",
+                    "serviceType": "Water",
+                    "active": true,
+                    "appointments": [
+                        {
+                            "appt_id": "A5",
+                            "created_at": "13/03/2013 13:02:10",
+                            "CSOID": "CSOMISHKATAN",
+                            "CSOName": "Mishka Tan",
+                            "date": "2014-05-07",
+                            "time": "1100-1200",
+                            "task": "Extension of Water Supply Location",
+                            "status": "PENDING",
+                            "completed": false,
+                            "remark": null
+                        }
+                    ]
+                },
+                {
+                    "serviceId": "S3",
+                    "serviceType": "Electricity",
+                    "active": false,
+                    "appointments": []
+                }
+            ]
+        },
+        {
+            "CustomerAccNo": 12443170,
+            "nric": "S8061560D",
+            "services": [
+                {
+                    "serviceId": "S1",
+                    "serviceType": "Gas",
+                    "active": false,
+                    "appointments": []
+                },
+                {
+                    "serviceId": "S2",
+                    "serviceType": "Water",
+                    "active": false,
+                    "appointments": []
+                },
+                {
+                    "serviceId": "S3",
+                    "serviceType": "Electricity",
+                    "active": true,
+                    "appointments": [
+                        {
+                            "appt_id": "A2",
+                            "created_at": "10/03/2013 12:20:17",
+                            "CSOID": "CSOMISHKATAN",
+                            "CSOName": "Mishka Tan",
+                            "date": "2014-09-25",
+                            "time": "1030-1130",
+                            "task": "General Site Inspection",
+                            "status": "PENDING",
+                            "completed": false,
+                            "remark": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "CustomerAccNo": 74655783,
+            "nric": "S76833650P",
+            "services": [
+                {
+                    "serviceId": "S1",
+                    "serviceType": "Gas",
+                    "active": false,
+                    "appointments": []
+                },
+                {
+                    "serviceId": "S2",
+                    "serviceType": "Water",
+                    "active": true,
+                    "appointments": [
+                        {
+                            "appt_id": "A7",
+                            "created_at": "11/03/2013 13:00:59",
+                            "CSOID": "CSOMISHKATAN",
+                            "CSOName": "Mishka Tan",
+                            "date": "2014-09-26",
+                            "time": "1030-1130",
+                            "task": "General Site Inspection",
+                            "status": "PENDING",
+                            "completed": false,
+                            "remark": null
+                        },
+                        {
+                            "appt_id": "A8",
+                            "created_at": "10/02/2014 15:12:19",
+                            "CSOID": "CSOMISHKATAN",
+                            "CSOName": "Mishka Tan",
+                            "date": "2014-02-13",
+                            "time": "1730-1830",
+                            "task": "Terminate Water Supply",
+                            "status": "COMPLETED",
+                            "completed": true,
+                            "remark": null
+                        }
+                    ]
+                },
+                {
+                    "serviceId": "S3",
+                    "serviceType": "Electricity",
+                    "active": false,
+                    "appointments": []
+                }
+            ]
+        },
+        {
+            "CustomerAccNo": 12046731,
+            "nric": "S74135319B",
+            "services": [
+                {
+                    "serviceId": "S1",
+                    "serviceType": "Gas",
+                    "active": true,
+                    "appointments": [
+                        {
+                            "appt_id": "A9",
+                            "created_at": "13/03/2013 11:00:39",
+                            "CSOID": "CSOMISHKATAN",
+                            "CSOName": "Mishka Tan",
+                            "date": "2014-04-20",
+                            "time": "1330-1430",
+                            "task": "Activate Gas Supply",
+                            "status": "PENDING",
+                            "completed": false,
+                            "remark": null
+                        }
+                    ]
+                },
+                {
+                    "serviceId": "S2",
+                    "serviceType": "Water",
+                    "active": false,
+                    "appointments": []
+                },
+                {
+                    "serviceId": "S3",
+                    "serviceType": "Electricity",
+                    "active": false,
+                    "appointments": []
+                }
+            ]
+        },
+        {
+            "CustomerAccNo": 12312312,
+            "nric": "S80454468D",
+            "services": [
+                {
+                    "serviceId": "S1",
+                    "serviceType": "Gas",
+                    "active": false,
+                    "appointments": []
+                },
+                {
+                    "serviceId": "S2",
+                    "serviceType": "Water",
+                    "active": false,
+                    "appointments": []
+                },
+                {
+                    "serviceId": "S3",
+                    "serviceType": "Electricity",
+                    "active": true,
+                    "appointments": [
+                        {
+                            "appt_id": "A10",
+                            "created_at": "13/03/2014 13:30:27",
+                            "CSOID": "CSOMISHKATAN",
+                            "CSOName": "Mishka Tan",
+                            "date": "2014-03-15",
+                            "time": "0930-1030",
+                            "task": "Urgent Repair Works",
+                            "status": "PENDING",
+                            "completed": false,
+                            "remark": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "CustomerAccNo": 32168481,
+            "nric": "S8874463W",
+            "services": [
+                {
+                    "serviceId": "S1",
+                    "serviceType": "Gas",
+                    "active": false,
+                    "appointments": []
+                },
+                {
+                    "serviceId": "S2",
+                    "serviceType": "Water",
+                    "active": true,
+                    "appointments": [
+                        {
+                            "appt_id": "A11",
+                            "created_at": "14/03/2014 10:12:03",
+                            "CSOID": "CSOMISHKATAN",
+                            "CSOName": "Mishka Tan",
+                            "date": "2014-03-18",
+                            "time": "1630-1730",
+                            "task": "Activate Water Supply",
+                            "status": "PENDING",
+                            "completed": false,
+                            "remark": null
+                        }
+                    ]
+                },
+                {
+                    "serviceId": "S3",
+                    "serviceType": "Electricity",
+                    "active": true,
+                    "appointments": [
+                        {
+                            "appt_id": "A12",
+                            "created_at": "14/03/2014 11:30:03",
+                            "CSOID": "CSOMISHKATAN",
+                            "CSOName": "Mishka Tan",
+                            "date": "2014-03-19",
+                            "time": "1730-1830",
+                            "task": "Activate Electric Supply",
+                            "status": "PENDING",
+                            "completed": false,
+                            "remark": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "CustomerAccNo": 21345678,
+            "nric": "S8071263H",
+            "services": [
+                {
+                    "serviceId": "S1",
+                    "serviceType": "Gas",
+                    "active": false,
+                    "appointments": []
+                },
+                {
+                    "serviceId": "S2",
+                    "serviceType": "Water",
+                    "active": false,
+                    "appointments": []
+                },
+                {
+                    "serviceId": "S3",
+                    "serviceType": "Electricity",
+                    "active": false,
+                    "appointments": []
+                }
+            ]
+        }
+    ]
+}
