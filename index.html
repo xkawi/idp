@@ -1,0 +1,465 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <title>IDP - Gamify</title>
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/mustache.js"></script>
+  <script type="text/javascript" src="js/timer.jquery.min.js"></script>
+  <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.6/firebase.js'></script>
+  <style>
+  #huscontent {
+    text-align: center;
+  }
+
+  .vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+  }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Modal -->
+  <div class="modal fade" id="summaryModal" tabindex="-1" role="dialog" aria-labelledby="modalTitleLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="modalTitleLabel">Summary</h4>
+        </div>
+        <div class="modal-body">
+          <p>Appointment Booking Has Been Completed!
+            <br/>Summary Page has been sent for Printing!
+            <br/>Click "OK" to dismiss this box and go back to Home Page!
+            <br/>Thank You!
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-8">
+        <label id="timeRange"></label>
+      </div>
+      <div class="col-md-4" style="text-align:right" id="welcome-msg">
+        <label>Hello, Mishka Tan!</label>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="panel-group" id="accordion">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                  Account
+                </a>
+              </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse in">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <span class="label label-danger" id="search-error"></span>
+                    <form>
+                      <div class="form-group">
+                        <label class="control-label">NRIC:</label>
+                        <div class="controls">
+                          <input type="text" name="nric" class="form-control" id="nric">
+                        </div>
+                      </div>
+                      or
+                      <div class="form-group">
+                        <label class="control-label">Account No.:</label>
+                        <div class="controls">
+                          <input type="text" name="accno" class="form-control" id="accno" value="73655890">
+                        </div>
+                      </div>
+                      <input type="submit" class="btn btn-primary" id="search-acc">
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-12">
+
+            <div class="panel-group" id="accordionFour">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordionFour" href="#collapseFour">
+                      Customer Information
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse in">
+                  <div class="panel-body" id="account-info-panel">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+
+            <div class="panel-group" id="accordion-overview">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <div class="row">
+                      <div class="col-md-10">
+                        <a data-toggle="collapse" data-parent="#accordion-overview" href="#collapseTen">Overview of Home Utility Services</a>
+                      </div>
+                      <div class="col-md-2">
+                        <a id="create-btn" href="#"><span class="glyphicon glyphicon-plus"></span>Appt.</a>
+                      </div>
+                    </div>
+                  </h4>
+                </div>
+                <div id="collapseTen" class="panel-collapse collapse in">
+                  <div class="panel-body" id="overview-panel">
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <span class="label label-danger" id="content-error"></span>
+                        <div id="huscontent"></div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIST OF SERVICES TEMPLATE -->
+  <script id="serv-list" type="text/template">
+  {{^.}}
+  <div class="row"><div class="col-md-12" style="text-align:center"><h4>No Services Available</h4></div></div>  
+  {{/.}}
+  {{#.}}
+  <div class="panel-group" id="accordion-{{serviceId}}" style="text-align:left;">
+  <div class="panel panel-default">
+  <div class="panel-heading">
+  <h4 class="panel-title">
+
+  <div class="row">
+  <div class="col-md-6"><a data-toggle="collapse" data-parent="#accordion-{{serviceId}}" href="#collapse-{{serviceId}}"><span>{{serviceType}}</span></a>
+  </div>
+
+  {{#active}}
+  <div class="col-md-3"><span class="label label-success">ACTIVE</span></div>
+  {{/active}}
+  {{^active}}
+  <div class="col-md-3"><span class="label label-danger">INACTIVE</span></div>
+  {{/active}}
+  <div class="col-md-3"><input type="checkbox" value="true" class="service-check" data-serviceid="{{serviceId}}" data-servicetype="{{serviceType}}"></div>
+  </div>
+
+  </h4>
+  </div>
+  <div id="collapse-{{serviceId}}" class="panel-collapse collapse in">
+  <div class="panel-body">
+  <div class="row">
+  <div class="col-md-12">
+  <div class="table-responsive">
+  <table class="table table-condensed table-striped" style="text-align:left">
+  <thead>
+  <tr>
+  <th>Date</th>
+  <th>Time</th>
+  <th>Appointment Details</th>
+  <th>Status</th>
+  <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  {{^appointments}}
+  <tr><td colspan="4" style="text-align:center"><h4>No Appointments Yet</h4></td></tr> 
+  {{/appointments}}
+  {{#appointments}}
+  <tr>
+  <td>{{date}}</td>
+  <td>{{time}}</td>
+  <td>{{task}}</td>
+  <td>{{status}}</td>
+  <td>
+  {{^completed}}
+  <a href="#" class="edit-appointment-btn" data-date="{{date}}" data-time="{{time}}" data-task="{{task}}" data-status="{{status}}" data-serviceid="{{serviceId}}" data-servicetype="{{serviceType}}" data-completed="{{completed}}" data-apptid="{{appt_id}}"><span class="label label-info">Edit</span></a>
+  <a href="#" class="cancel-appointment-btn" data-date="{{date}}" data-time="{{time}}" data-task="{{task}}" data-status="{{status}}" data-serviceid="{{serviceId}}" data-servicetype="{{serviceType}}" data-completed="{{completed}}" data-apptid="{{appt_id}}"><span class="label label-danger">Cancel</span></a>
+  {{/completed}}
+  </td>
+  </tr>
+  {{/appointments}}
+  </tbody>
+
+  </table></div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  {{/.}}
+  </script>
+
+  <!-- ACCOUNT INFORMATION TEMPLATE -->
+  <script type="text/template" id="account-info">
+  <div class="table-responsive">
+  <table class="table">
+  <tbody>
+  <tr>
+  <td style="width:120px">
+  <label>Name:</label>
+  </td>
+  <td>
+  <span class="label label-success" style="font-size: 1em">{{name}}</span>
+  </td>
+  </tr>
+  <tr>
+  <td style="width:120px">
+  <label>NRIC/FIN No:</label>
+  </td>
+  <td>
+  <span class="label label-success" style="font-size: 1em">{{nric}}</span>
+  </td>
+  </tr>
+  <tr>
+  <td style="width:120px">
+  <label>Account No:</label>
+  </td>
+  <td>
+  <span class="label label-success" style="font-size: 1em" id="account_no">{{accno}}</span>
+  </td>
+  </tr>
+  <tr>
+  <td style="width:120px">
+  <label>Contact No:</label>
+  </td>
+  <td>
+  <span class="label label-success" style="font-size: 1em">{{contact}}</span>
+  </td>
+  </tr>
+  <tr>
+  <td style="width:120px">
+  <label>Email:</label>
+  </td>
+  <td>
+  <span class="label label-success" style="font-size: 1em">{{email}}</span>
+  </td>
+  </tr>
+  <tr>
+  <td style="width:120px">
+  <label>Address:</label>
+  </td>
+  <td>
+  <span class="label label-success" style="font-size: 1em">{{address}}</span>
+  </td>
+  </tr>
+  </tbody>
+  </table></div>
+  </script>
+
+
+  <!-- MAKE APPOINTMENT FORM TEMPLATE -->
+  <script id="make-form" type="text/template">
+
+  {{#.}}
+  <form class="form-horizontal" role="form" id="form-{{serviceId}}">
+  <div class="form-group row">
+  <div class="col-xs-6 vcenter"></div>
+  <div class="col-xs-4 vcenter"></div>
+  </div>
+  <div class="form-group">
+
+  <div class="col-sm-8" style='text-align:left;'>
+  <h4>Booking Appointment for {{serviceType}} service:</h4>
+  </div>
+
+  <input type="hidden" value="{{serviceId}}" class="serviceId" />
+  <input type="hidden" value="{{serviceType}}" class="serviceType" />
+
+  <div class="col-md-4" style="text-align:right;">
+  <h4><a href="#" class="remove-appointment" data-serviceid="{{serviceId}}"><span class="glyphicon glyphicon-trash"></span></a></h4>
+  </div>
+
+  </div>
+  <div class="form-group">
+  <label for="inputDate-{{serviceId}}" class="col-sm-4 control-label">*Appointment Date</label>
+  <div class="col-sm-8">
+  <input type="date" class="form-control" id="inputDate-{{serviceId}}" placeholder="Date" value="25-03-2014" required>
+  </div>
+  </div>
+  <div class="form-group">
+  <label for="inputTime-{{serviceId}}" class="col-sm-4 control-label">*Appointment Time</label>
+  <div class="col-sm-8">
+  <select class="form-control" id="inputTime-{{serviceId}}" required>
+
+  {{#availabletimes}}
+  <option>{{value}}</option>
+  {{/availabletimes}}
+
+  </select>
+  </div>
+  </div>
+  <div class="form-group">
+  <label for="inputJobTask-{{serviceId}}" class="col-sm-4 control-label">*Job Task</label>
+  <div class="col-sm-8">
+  <select class="form-control" id="inputJobTask-{{serviceId}}" required>
+
+  {{#tasks}}
+  <option>{{name}}</option>
+  {{/tasks}}
+
+  </select>
+  </div>
+  </div>
+  <div class="form-group">
+  <label for="inputRemark-{{serviceId}}" class="col-sm-4 control-label">Remark (Optional)</label>
+  <div class="col-sm-8">
+  <textarea class="form-control" id="inputRemark-{{serviceId}}" placeholder="Remark"></textarea>
+  </div>
+  </div>
+  </form>
+  {{/.}}
+  <button type="submit" class="btn btn-default" id="btn-make-create">Create</button>
+  <button type="submit" class="btn btn-default" id="btn-make-cancel">Cancel</button>
+  </script>
+
+
+
+  <!-- EDIT APPOINTMENT FORM TEMPLATE -->
+  <script id="edit-appointment-template" type="text/template">
+
+  <form class="form-horizontal" role="form" id="form-{{serviceId}}">
+  <div class="form-group row">
+  <div class="col-xs-6 vcenter"></div>
+  <div class="col-xs-4 vcenter"></div>
+  </div>
+  <div class="form-group">
+  <div class="col-sm-12" style='text-align:left;'>
+  <h4>Edit Appointment for {{serviceType}} service:</h4>
+  </div>
+  </div>
+  <input type="hidden" value="{{serviceId}}" class="serviceId" />
+  <input type="hidden" value="{{serviceType}}" class="serviceType" />
+  <input type="hidden" value="{{apptid}}" class="apptid" />
+  <div class="form-group">
+  <label for="inputDate-{{serviceId}}" class="col-sm-4 control-label">*Appointment Date</label>
+  <div class="col-sm-4">
+  <input type="date" class="form-control" id="old-inputDate-{{serviceId}}" placeholder="Old Date" value="{{selectedDate}}" disabled>
+  </div>
+  <div class="col-sm-4">
+  <input type="date" class="form-control" id="inputDate-{{serviceId}}" placeholder="New Date" value="{{selectedDate}}" required>
+  </div>
+  </div>
+  <div class="form-group">
+  <label for="inputTime-{{serviceId}}" class="col-sm-4 control-label">*Appointment Time</label>
+  <div class="col-sm-4">
+
+  <select class="form-control" id="old-inputTime-{{serviceId}}" disabled>
+  {{#availabletimes}}
+  {{#selected}}
+  <option selected>{{value}}</option>
+  {{/selected}}
+  {{^selected}}
+  <option>{{value}}</option>
+  {{/selected}}
+  {{/availabletimes}}
+  </select>
+  </div>
+
+  <div class="col-sm-4">
+  <select class="form-control" id="inputTime-{{serviceId}}" required>
+  {{#availabletimes}}
+  <option>{{value}}</option>
+  {{/availabletimes}}
+  </select>
+  </div>
+  </div>
+  <div class="form-group">
+  <label for="inputJobTask-{{serviceId}}" class="col-sm-4 control-label">*Job Task</label>
+  <div class="col-sm-8">
+  <select class="form-control" id="inputJobTask-{{serviceId}}" required disabled>
+
+  {{#tasks}}
+  {{#selected}}
+  <option selected>{{name}}</option>
+  {{/selected}}
+  {{^selected}}
+  <option>{{name}}</option>
+  {{/selected}}
+  {{/tasks}}
+
+  </select>
+  </div>
+  </div>
+
+  <div class="form-group">
+  <label for="inputRemark-{{serviceId}}" class="col-sm-4 control-label">Remark (Optional)</label>
+  <div class="col-sm-8">
+  <textarea class="form-control" id="inputRemark-{{serviceId}}" placeholder="Remark"></textarea>
+  </div>
+  </div>
+
+  </form>
+  <button type="submit" class="btn btn-default" id="btn-edit-save" data-serviceid="{{serviceId}}">Save</button>
+  <button type="submit" class="btn btn-default" id="btn-edit-cancel" data-serviceid="{{serviceId}}">Back</button>
+  </script>
+
+
+
+  <script id="summary" type="text/template">
+  <div class="row">
+  <div class="col-md-12">
+  <div class="table-responsive">
+  <table class="table" style="text-align:left">
+  <thead>
+  <tr><th>Service</th><th>Date</th><th>Time</th><th>Task</th><th>Remark</th></tr>
+  </thead>
+  <tbody>
+  {{#appointments}}
+  <tr>
+  <td>{{serviceType}}</td><td>{{date}}</td><td>{{time}}</td><td>{{task}}</td><td>{{remark}}</td></tr>
+  {{/appointments}}
+  </tbody>
+  </table></div>
+  <button type="submit" class="btn btn-default" id="confirm-appointment" data-refpath="{{fb_refpath}}" data-apptobj="{{appt_obj}}">Confirm Appointment</button>
+  <button type="submit" class="btn btn-default" id="unconfirm-appointment">Cancel Everything</button>
+  </div>
+  </div>
+  </script>
+
+  <script type="text/javascript" src="js/gamen.js"></script>
+
+</body>
+</html>

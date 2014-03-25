@@ -1,0 +1,266 @@
+<!doctype html>
+
+<html>
+  
+  <head>
+    <title>New Page</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <style type="css/stylesheet">
+      .form-group, .form-group label, .form-group input {
+        float:left;
+        display:inline;
+      }
+      .form-group {
+        margin-right: 5px
+      }
+      .form-group label {
+        line-height: --px;
+      }
+      .borderless td { 
+        border-top: none; 
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">                  Account                </a>              </h4>
+              </div>
+              <div id="collapseThree" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <span class="label label-danger" id="error">error</span>
+                      <form>
+                        <div class="form-group">
+                          <label class="control-label">NRIC:</label>
+                          <div class="controls">
+                            <input type="text" name="nric" class="form-control">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label">Account No.:</label>
+                          <div class="controls">
+                            <input type="text" name="accno" class="form-control">
+                          </div>
+                        </div>
+                        <input type="submit" class="btn btn-primary">
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">                      Badge                    </a>                  </h4>
+                  </div>
+                  <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <img src="http://cl.ly/UGqv/keyboard.png" width="72px">
+                        </div>
+                        <div class="col-md-4">
+                          <img src="http://cl.ly/UGvr/trybadge.png" width="72px">
+                        </div>
+                        <div class="col-md-4">
+                          <img src="http://cl.ly/UGqv/keyboard.png" width="72px">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">                      Leaderboard                    </a>                  </h4>
+                  </div>
+                  <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <table class="table" style="text-align:center">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Avg. Time (min)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>Michael</td>
+                            <td>5:33</td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td>Jake</td>
+                            <td>6:33</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Lake</td>
+                            <td>7:43</td>
+                          </tr>
+                          <tr>
+                            <td>4</td>
+                            <td>Bake</td>
+                            <td>8:30</td>
+                          </tr>
+                          <tr>
+                            <td>5</td>
+                            <td>Rake</td>
+                            <td>9:33</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th colspan="2">
+                      <h3>Customer Information</h3>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="width:120px">
+                      <label>Name:</label>
+                    </td>
+                    <td>
+                      <span class="label label-success" style="font-size: 1em">Jake</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="width:120px">
+                      <label>NRIC/FIN No:</label>
+                    </td>
+                    <td>
+                      <span class="label label-success" style="font-size: 1em">GGG9999999</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="width:120px">
+                      <label>Account No:</label>
+                    </td>
+                    <td>
+                      <span class="label label-success" style="font-size: 1em">B1234567789</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="width:120px">
+                      <label>Contact No:</label>
+                    </td>
+                    <td>
+                      <span class="label label-success" style="font-size: 1em">12345678</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="width:120px">
+                      <label>Email:</label>
+                    </td>
+                    <td>
+                      <span class="label label-success" style="font-size: 1em">hello</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="width:120px">
+                      <label>Address:</label>
+                    </td>
+                    <td>
+                      <span class="label label-success" style="font-size: 1em">Blk 124 Lorong 1 Toa Payoh 123456</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-12" style="text-align:center">
+                  <h3>Overview of Home Utility Services                    <div class="btn-group">            <a class="btn btn-default" data-toggle="dropdown" href="#">Action</a>            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">            <span class="caret"></span>            </a>            <ul class="dropdown-menu">              <li><a href="#">Create Appointment</a></li>              <li><a href="#">Edit Appointment</a></li>            </ul>                    </div></h3>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                
+<form class="form-horizontal" role="form">
+  <h4>Header</h4>
+  <div class="form-group">
+    <label for="inputDate" class="col-sm-4 control-label">*Appointment Date</label>
+    <div class="col-sm-8">
+      <input type="date" class="form-control" id="inputDate" placeholder="Date">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputTime" class="col-sm-4 control-label">*Appointment Time</label>
+    <div class="col-sm-8">
+      <input type="time" class="form-control" id="inputTime" placeholder="Time">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputJobTask" class="col-sm-4 control-label">*Job Task</label>
+    <div class="col-sm-8">
+      <select class="form-control" id="inputJobTask">
+      <option selected>Option 1</option>
+      <option>Option 2</option>
+      <option>Option 3</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputTime" class="col-sm-4 control-label">Remark (Optional)</label>
+    <div class="col-sm-8">
+      <textarea class="form-control" id="inputRemark" placeholder="Remark"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-8">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Tick to Remove
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-8">
+      <button type="submit" class="btn btn-default">Save</button>
+    </div>
+  </div>
+</form>
+
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

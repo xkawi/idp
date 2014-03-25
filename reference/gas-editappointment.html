@@ -1,0 +1,413 @@
+<!doctype html>
+
+<html>
+  
+  <head>
+    <title>IDP - Gamify</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script>
+    <style>
+      #huscontent {
+        text-align: center;
+      }
+      .vcenter {
+        display: inline-block;
+        vertical-align: middle;
+        float: none;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">                  Account                </a>              </h4>
+              </div>
+              <div id="collapseThree" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <span class="label label-danger" id="error">error</span>
+                      <form>
+                        <div class="form-group">
+                          <label class="control-label">NRIC:</label>
+                          <div class="controls">
+                            <input type="text" name="nric" class="form-control">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label">Account No.:</label>
+                          <div class="controls">
+                            <input type="text" name="accno" class="form-control">
+                          </div>
+                          <select class="form-control">
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                          </select>
+                        </div>
+                        <input type="submit" class="btn btn-primary">
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">                      Badge                    </a>                  </h4>
+                  </div>
+                  <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <img src="http://cl.ly/UGqv/keyboard.png" width="72px">
+                        </div>
+                        <div class="col-md-4">
+                          <img src="http://cl.ly/UGvr/trybadge.png" width="72px">
+                        </div>
+                        <div class="col-md-4">
+                          <img src="http://cl.ly/UGqv/keyboard.png" width="72px">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">                      Leaderboard                    </a>                  </h4>
+                  </div>
+                  <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <table class="table" style="text-align:center">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Avg. Time (min)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>Michael</td>
+                            <td>5:33</td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td>Jake</td>
+                            <td>6:33</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Lake</td>
+                            <td>7:43</td>
+                          </tr>
+                          <tr>
+                            <td>4</td>
+                            <td>Bake</td>
+                            <td>8:30</td>
+                          </tr>
+                          <tr>
+                            <td>5</td>
+                            <td>Rake</td>
+                            <td>9:33</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">                    Customer Information                  </a>                </h4>
+                  </div>
+                  <div id="collapseFour" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                      <table class="table">
+                        <tbody>
+                          <tr>
+                            <td style="width:120px">
+                              <label>Name:</label>
+                            </td>
+                            <td>
+                              <span class="label label-success" style="font-size: 1em">Jake</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width:120px">
+                              <label>NRIC/FIN No:</label>
+                            </td>
+                            <td>
+                              <span class="label label-success" style="font-size: 1em">GGG9999999</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width:120px">
+                              <label>Account No:</label>
+                            </td>
+                            <td>
+                              <span class="label label-success" style="font-size: 1em">B1234567789</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width:120px">
+                              <label>Contact No:</label>
+                            </td>
+                            <td>
+                              <span class="label label-success" style="font-size: 1em">12345678</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width:120px">
+                              <label>Email:</label>
+                            </td>
+                            <td>
+                              <span class="label label-success" style="font-size: 1em">hello</span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width:120px">
+                              <label>Address:</label>
+                            </td>
+                            <td>
+                              <span class="label label-success" style="font-size: 1em">Blk 124 Lorong 1 Toa Payoh 123456</span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-12" style="text-align:center">
+                  <h4 align="left">Editing Booking of Appointments</h4>
+                </div>
+                <div class="col-md-12">
+                  <form>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <label class="control-label">Appointment Date *:&nbsp;&nbsp;</label>
+                          </td>
+                          <td>
+                            <div class="controls">
+                              <input type="date" name="apptDate" class="form-control">
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label class="control-label">Appointment Time *:<br>
+                              (Between Period)<br></label>
+                          </td>
+                          <td>
+                            <select class="form-control">
+                              <option></option>
+                              <option>1030-1130</option>
+                              <option>1230-1330</option>
+                              <option>1330-1430</option>
+                              <option>1430-1530</option>
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label class="control-label">Job Task *:</label>
+                          </td>
+                          <td>
+                            <select class="form-control">
+                              <option></option>
+                              <option>General Site Inspection</option>
+                              <option>Activation/Deactivation of Service</option>
+                              <option>Replacement/Repair of Service</option>
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Remarks:<br>
+                            (Optional)</td>
+                          <td>
+                            <textarea class="form-control"></textarea>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><br> </td>
+                          <td><br><input type="submit" class="btn btn-primary" style="float: right;"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    
+                  </form>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <span class="label label-danger" id="content-error"></span>
+                  <div id="huscontent">
+                    <table class="table" style="text-align:left"></table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      //example/*Template:{{#repo}}  <b>{{name}}</b>{{/repo}}Hash:{  "repo": [    { "name": "resque" },    { "name": "hub" },    { "name": "rip" }  ]}Output:<b>resque</b><b>hub</b><b>rip</b>*/
+    </script>
+    <script id="serv-list" type="text/template">
+      < table class = "table"
+      style = "text-align:left" > < thead > < tr > < th > Type of Services < /th>      <th>Status</th > < th > Selection < /th>    </tr > < /thead>  <tbody>    <tr>      <td>Gas</td > < td > < span class = "label label-success" > GREEN < /span></td > < td > < input type = "checkbox"
+      value = "true"
+      class = "service-check"
+      data - serviceid = "1"
+      data - servicetype = "gas" > < /td>    </tr > < tr > < td > Water < /td>      <td><span class="label label-success">GREEN</span > < /td>      <td>        <input type="checkbox" value="true" class="service-check" data-serviceid="2" data-servicetype="water">      </td > < /tr>    <tr>      <td>Electricity</td > < td > < span class = "label label-success" > GREEN < /span>      </td > < td > < input type = "checkbox"
+      value = "true"
+      class = "service-check"
+      data - serviceid = "3"
+      data - servicetype = "electricity" > < /td>    </tr > < /tbody></table >
+    </script>
+    <script id="make-form" type="text/template">
+      {
+        {#.
+        }
+      } < form class = "form-horizontal"
+      role = "form"
+      id = "form-{{serviceID}}" > < div class = "form-group row" > < div class = "col-xs-6 vcenter" > < h4 > {
+        {
+          serviceHeader
+        }
+      } < /h4></div > < div class = "col-xs-4 vcenter" > < span style = "vertical-align: middle;position: relative;" > < input type = "checkbox"
+      id = "remove-check"
+      data - serviceid = "{{serviceID}}" > Tick to Remove < /span></div > < /div><div class="form-group"><label for="inputDate-{{serviceID}}" class="col-sm-4 control-label">*Appointment Date</label > < div class = "col-sm-8" > < input type = "date"
+      class = "form-control"
+      id = "inputDate-{{serviceID}}"
+      placeholder = "Date" > < /div></div > < div class = "form-group" > < label
+      for = "inputTime-{{serviceID}}"
+      class = "col-sm-4 control-label" > * Appointment Time < /label><div class="col-sm-8"><input type="time" class="form-control" id="inputTime-{{serviceID}}" placeholder="Time"></div > < /div><div class="form-group"><label for="inputJobTask-{{serviceID}}" class="col-sm-4 control-label">*Job Task</label > < div class = "col-sm-8" > < select class = "form-control"
+      id = "inputJobTask-{{serviceID}}" > < option selected > Option 1 < /option><option>Option 2</option > < option > Option 3 < /option></select > < /div></div > < div class = "form-group" > < label
+      for = "inputRemark-{{serviceID}}"
+      class = "col-sm-4 control-label" > Remark(Optional) < /label><div class="col-sm-8"><textarea class="form-control" id="inputRemark-{{serviceID}}" placeholder="Remark"></textarea > < /div></div > < /form>{{/.
+      }
+      } < button type = "submit"
+      class = "btn btn-default"
+      id = "btn-make-save" > Save < /button><button type="submit" class="btn btn-default" id="btn-make-cancel">Cancel</button >
+    </script>
+    <script id="edit-form" type="text/template">
+      {
+        {#.
+        }
+      } < form class = "form-horizontal"
+      role = "form"
+      id = "form-{{serviceID}}" > < h4 > {
+        {
+          serviceHeader
+        }
+      } < /h4><div class="form-group"><label for="inputDate" class="col-sm-3 control-label">*Appointment Date</label > < div class = "col-sm-9" > < input type = "date"
+      class = "form-control"
+      id = "inputDate"
+      placeholder = "Date" > < /div></div > < div class = "form-group" > < label
+      for = "inputTime"
+      class = "col-sm-3 control-label" > * Appointment Time < /label><div class="col-sm-9"><input type="time" class="form-control" id="inputTime" placeholder="Time"></div > < /div><div class="form-group"><label for="inputJobTask" class="col-sm-3 control-label">*Job Task</label > < div class = "col-sm-9" > < select class = "form-control"
+      id = "inputJobTask" > < option selected > Option 1 < /option><option>Option 2</option > < option > Option 3 < /option></select > < /div></div > < div class = "form-group" > < label
+      for = "inputTime"
+      class = "col-sm-3 control-label" > Remark(Optional) < /label><div class="col-sm-9"><textarea class="form-control" id="inputRemark" placeholder="Remark"></textarea > < /div></div > < div class = "form-group" > < div class = "col-sm-offset-3 col-sm-9" > < button type = "button"
+      class = "btn btn-default"
+      id = "btn-save-edit" > Save < /button><button type="button" class="btn btn-default" id="btn-cancel-edit">Cancel</button > < /div></div > < /form>{{/.
+      }
+      }
+    </script>
+    <script id="success-edit" type="text/template">
+      {
+        {#.
+        }
+      } {
+        {
+          /.}}
+    </script>
+    <script id="success-make" type="text/template">
+      {
+        {#.
+        }
+      } {
+        {
+          /.}}
+    </script>
+    <script type="text/javascript">
+      $("#edit-btn").click(function() {
+        var services = [];
+        if ($(".service-check:checked").length != 1) {
+          $("#content-error").html("please select only 1 service to edit");
+        } else {
+          $("#content-error").html("");
+          $(".service-check:checked").each(function() {
+            var sid = $(this).data("serviceid");
+            var stype = $(this).data("servicetype");
+            var sheader = "Edit Appointment(s) for " + stype + sid + " Service"
+            var obj = {
+              "serviceID": sid,
+              "serviceType": stype,
+              "serviceHeader": sheader
+            }
+            services.push(obj);
+          });
+          var template = $('#edit-form').html();
+          var html = Mustache.render(template, services);
+          $('#huscontent').html(html);
+        }
+      });
+      $("#create-btn").click(function() {
+        $("#content-error").html("");
+        var services = [];
+        if ($(".service-check:checked").length > 0) {
+          $(".service-check:checked").each(function() {
+            var sid = $(this).data("serviceid");
+            var stype = $(this).data("servicetype");
+            var sheader = "New Appointment for " + stype + sid + " Service"
+            var obj = {
+              "serviceID": sid,
+              "serviceType": stype,
+              "serviceHeader": sheader
+            }
+            services.push(obj);
+          });
+        } else {
+          $("#content-error").html("please select at least one service(s)");
+        }
+        var template = $('#make-form').html();
+        var html = Mustache.render(template, services);
+        $('#huscontent').html(html); //reset error message just in case  $("#content-error").html("");});
+    </script>
+  </body>
+

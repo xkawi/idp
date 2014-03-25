@@ -1,4 +1,1 @@
-idp
-===
-
-for my IDP (Prototype) class project
+README file
