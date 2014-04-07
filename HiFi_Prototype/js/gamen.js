@@ -6,10 +6,10 @@ $(document).ready(function(){
 	var CSOID = "CSOMISHKATAN";
 	var CSOName = "Mishka Tan";
 
-	var fbAppt = new Firebase('https://idpgame.firebaseio.com/customer_appointments');
-	var fbTime = new Firebase('https://idpgame.firebaseio.com/availabletime');
-	var fbCust = new Firebase('https://idpgame.firebaseio.com/customers');
-	var fbServ = new Firebase('https://idpgame.firebaseio.com/services');
+	var fbAppt = new Firebase('https://idpgame.firebaseio.com/'+CSOID+'/customer_appointments');
+	var fbTime = new Firebase('https://idpgame.firebaseio.com/'+CSOID+'/availabletime');
+	var fbCust = new Firebase('https://idpgame.firebaseio.com/'+CSOID+'/customers');
+	var fbServ = new Firebase('https://idpgame.firebaseio.com/'+CSOID+'/services');
 	var fbLead = new Firebase('https://idpgame.firebaseio.com/leaderboard');
 	
 	$("#questPopover").popover({
