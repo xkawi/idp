@@ -1,0 +1,506 @@
+<!doctype html>
+<html>
+<head>
+	<title>IDP - Gamify</title>
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/mustache.js"></script>
+	<script type="text/javascript" src="js/jquery.timer.js"></script>
+	<script type='text/javascript' src='http://cdn.firebase.com/js/client/1.0.6/firebase.js'></script>
+
+	<style>
+	html, body {
+		min-width: 100%;
+		min-height: 100%;
+	}
+	ul#badgelist, ul#cardlist {
+		list-style-type: none;
+		margin: 0 0 5px 0;
+		padding: 0;
+	}
+
+	img.badgeicon, img.cardicon {
+		width: 81px;
+		margin-bottom: 10px;
+	}
+
+	#huscontent {
+		text-align: center;
+	}
+
+	.vcenter {
+		display: inline-block;
+		vertical-align: middle;
+		float: none;
+	}
+
+	#badge{
+		position:absolute;
+		border:1px solid #ccc;
+		background:#ffffff;
+		display:none;
+		color:#000000;
+	}
+
+	#accno{
+		width: 200px;
+	}
+
+	.main{
+		min-height: 100%;
+		top: 81px;
+	}
+
+	.popover-content {
+		overflow: scroll;
+		height: 482px;
+	}
+
+	.container {
+		min-width: 1024px;
+	}
+
+	img.navimg {
+		width: 32px;
+		height:32px;
+	}
+
+	</style>
+</head>
+
+<body>
+	<div class="container">
+
+		<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+			<div class="container">
+
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapsenav">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#"></a>
+				</div>
+
+				<p class="navbar-text">
+					<span id="timerpanel" class="label" style="display:inline;font-size:2.7em;">00:00:00</span>
+				</p>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#" id="nav-cards-btn" data-toggle="popover">
+						<img src="http://i566.photobucket.com/albums/ss101/teemas88/ICON-Stamp_zps32c5f808.png" class="navimg">
+						<span class="badge" id="cardnotif">0</span>
+						</a></li>
+					<li><a href="#" id="nav-badges-btn" data-toggle="popover">
+						<img src="http://i566.photobucket.com/albums/ss101/teemas88/ICON-Badges_zpsd27d5018.png" class="navimg">
+						<span class="badge" id="badgenotif">0</span>
+						</a></li>
+							<!--<i class="fa fa-shield fa-2x" style="color:white"></i>-->
+					<li><a href="#" id="nav-leaderboard-btn" data-toggle="popover">
+						<img src="http://i566.photobucket.com/albums/ss101/teemas88/Leaderboard_BLACKBG_zps2360c5b0.png" class="navimg">
+						<span class="badge"></span></a></li>
+							<!-- <i class="fa fa-trophy fa-2x" style="color:white"></i> -->	
+					<!-- placeholder for the dropdown to select CSO -->
+					<li class="dropdown" id="csoid_select"></li>
+				</ul>
+
+				<form class="navbar-form mavbar-left" role="search">
+					<div class="form-group" id="accform">
+						<input type="text" name="accno" class="form-control" id="accno" placeholder="NRIC or Account No">
+					</div>
+					<input type="submit" class="btn navbar-btn" id="search-acc" value="Search">
+					<button class="btn navbar-btn" id="clear-acc">Clear</button>
+				</form>
+			</div><!-- /.container -->
+		</nav>
+
+
+		<div class="col-md-12 main">
+
+			<div class="row">
+				<div class="col-md-12 accountinfo" id="account-info-panel">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 serviceinfo">
+
+					<div class="panel-group" id="accordion-overview">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<div class="row">
+										<div class="col-md-5">
+											<a data-toggle="collapse" data-parent="#accordion-overview" href="#collapseTen">Overview of Home Utility Services</a>
+										</div>
+										<div class="col-md-2">
+											<span>Status</span>
+										</div>
+										<div class="col-md-2">
+											<span>Selection</span>
+										</div>
+										<div class="col-md-1">
+											<a id="create-btn" href="#">
+												<button class="btn btn-info">Make Appointment</button>
+											</a>
+										</div>
+									</div>
+								</h4>
+							</div>
+							<div id="collapseTen" class="panel-collapse collapse in">
+								<div class="panel-body" id="overview-panel">
+									<div class="row">
+										<div class="col-md-12">
+											<span class="label label-danger" id="content-error"></span>
+											<div id="huscontent"></div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<script type="text/template" id="csoid_template">
+	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="csoname">Select CSO</span><b class="caret"></b></a>
+	<ul class="dropdown-menu">
+	{{#.}}
+	<li><a href="#" class="cso" data-csoid="{{id}}">{{name}}</a></li>
+	{{/.}}
+	</ul>
+	</script>
+
+
+
+	<script type="text/template" id="account-info">
+	<div class="panel-group" id="accordionFour">
+	<div class="panel panel-default">
+	<div class="panel-heading">
+	<h3 class="panel-title">{{name}}</h3>
+	</div>
+	<div id="collapseFour" class="panel-collapse collapse in">
+	<div class="panel-body" id="customer-info-panel">
+	<div class="table-responsive">
+	<table class="table">
+	<thead>
+	<tr><th>NRIC</th><th>Account No</th><th>Contact No</th><th>Email</th><th>Address</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+	<td><span class="label label-success" style="font-size: 1em" id="nric-info">{{nric}}</span></td>
+	<td><span class="label label-success" style="font-size: 1em" id="account_no">{{accno}}</span></td>
+	<td><span class="label label-success" style="font-size: 1em">{{contact}}</span></td>
+	<td><span class="label label-success" style="font-size: 1em">{{email}}</span></td>
+	<td><span class="label label-success" style="font-size: 1em">{{address}}</span></td>
+	</tr>
+	</tbody>
+	</table>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+
+
+	</script>
+
+	<script type="text/template" id="serv-list">
+	{{^.}}
+	<div class="row"><div class="col-md-12" style="text-align:center"><h4>No Services Available</h4></div></div>
+	{{/.}}
+	{{#.}}
+	<div class="panel-group" id="accordion-{{serviceId}}" style="text-align:left;">
+	<div class="panel panel-default">
+	<div class="panel-heading">
+	<h4 class="panel-title">
+
+	<div class="row">
+	<div class="col-md-5"><a data-toggle="collapse" data-parent="#accordion-{{serviceId}}" href="#collapse-{{serviceId}}"><span>{{serviceType}}</span></a>
+	</div>
+	{{#active}}
+	<div class="col-md-2"><span class="label label-success">ACTIVE</span></div>
+	{{/active}}
+	{{^active}}
+	<div class="col-md-2"><span class="label label-danger">INACTIVE</span></div>
+	{{/active}}
+	<div class="col-md-1"><input type="checkbox" value="true" class="service-check" data-serviceid="{{serviceId}}" data-servicetype="{{serviceType}}"></div>
+	</div>
+
+	</h4>
+	</div>
+	<div id="collapse-{{serviceId}}" class="panel-collapse collapse">
+	<div class="panel-body">
+	<div class="row">
+	<div class="col-md-12">
+	<div class="table-responsive">
+	<table class="table table-condensed table-striped" style="text-align:left">
+	<thead>
+	<tr>
+	<th>Date</th>
+	<th>Time</th>
+	<th>Appointment Details</th>
+	<th>Status</th>
+	<th></th>
+	</tr>
+	</thead>
+	<tbody>
+	{{^appointments}}
+	<tr><td colspan="4" style="text-align:center"><h4>No Appointments Yet</h4></td></tr>
+	{{/appointments}}
+	{{#appointments}}
+	<tr>
+	<td>{{date}}</td>
+	<td>{{time}}</td>
+	<td>{{task}}</td>
+	<td>{{status}}</td>
+	<td>
+	{{^completed}}
+	<a href="#" class="edit-appointment-btn" data-date="{{date}}" data-time="{{time}}" data-task="{{task}}" data-status="{{status}}" data-serviceid="{{serviceId}}" data-servicetype="{{serviceType}}" data-completed="{{completed}}" data-apptid="{{appt_id}}"><span class="label label-info">Edit</span></a>
+	<a href="#" class="cancel-appointment-btn" data-date="{{date}}" data-time="{{time}}" data-task="{{task}}" data-status="{{status}}" data-serviceid="{{serviceId}}" data-servicetype="{{serviceType}}" data-completed="{{completed}}" data-apptid="{{appt_id}}"><span class="label label-danger">Cancel</span></a>
+	{{/completed}}
+	</td>
+	</tr>
+	{{/appointments}}
+	</tbody>
+	</table>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	{{/.}}
+	</script>
+
+
+	<!-- MAKE APPOINTMENT FORM TEMPLATE -->
+	<script id="make-form" type="text/template">
+
+	{{#.}}
+	<form class="form-horizontal" role="form" id="form-{{serviceId}}">
+	<div class="form-group row">
+	<div class="col-xs-6 vcenter"></div>
+	<div class="col-xs-4 vcenter"></div>
+	</div>
+	<div class="form-group">
+
+	<div class="col-sm-8" style='text-align:left;'>
+	<h4>Booking Appointment for {{serviceType}} service:</h4>
+	</div>
+
+	<input type="hidden" value="{{serviceId}}" class="serviceId" />
+	<input type="hidden" value="{{serviceType}}" class="serviceType" />
+
+	<div class="col-md-4" style="text-align:right;">
+	<h4><a href="#" class="remove-appointment" data-serviceid="{{serviceId}}"><span class="glyphicon glyphicon-trash"></span></a></h4>
+	</div>
+
+	</div>
+	<div class="form-group">
+	<label for="inputDate-{{serviceId}}" class="col-sm-4 control-label">*Appointment Date</label>
+	<div class="col-sm-8">
+	<input type="date" class="form-control" id="inputDate-{{serviceId}}" placeholder="Date" value="25-03-2014" min="{{currentdate}}" required>
+	</div>
+	</div>
+	<div class="form-group">
+	<label for="inputTime-{{serviceId}}" class="col-sm-4 control-label">*Appointment Time</label>
+	<div class="col-sm-8">
+	<select class="form-control" id="inputTime-{{serviceId}}" required>
+
+	{{#availabletimes}}
+	<option>{{value}}</option>
+	{{/availabletimes}}
+
+	</select>
+	</div>
+	</div>
+	<div class="form-group">
+	<label for="inputJobTask-{{serviceId}}" class="col-sm-4 control-label">*Job Task</label>
+	<div class="col-sm-8">
+	<select class="form-control" id="inputJobTask-{{serviceId}}" required>
+
+	{{#tasks}}
+	<option>{{name}}</option>
+	{{/tasks}}
+
+	</select>
+	</div>
+	</div>
+	<div class="form-group">
+	<label for="inputRemark-{{serviceId}}" class="col-sm-4 control-label">Remark (Optional)</label>
+	<div class="col-sm-8">
+	<textarea class="form-control" id="inputRemark-{{serviceId}}" placeholder="Remark"></textarea>
+	</div>
+	</div>
+	</form>
+	{{/.}}
+	<button type="submit" class="btn btn-default" id="btn-make-create">Create</button>
+	<button type="submit" class="btn btn-default" id="btn-make-cancel">Cancel</button>
+	</script>
+
+
+
+	<!-- EDIT APPOINTMENT FORM TEMPLATE -->
+	<script id="edit-appointment-template" type="text/template">
+
+	<form class="form-horizontal" role="form" id="form-{{serviceId}}">
+	<div class="form-group row">
+	<div class="col-xs-6 vcenter"></div>
+	<div class="col-xs-4 vcenter"></div>
+	</div>
+	<div class="form-group">
+	<div class="col-sm-12" style='text-align:left;'>
+	<h4>Edit Appointment for {{serviceType}} service:</h4>
+	</div>
+	</div>
+	<input type="hidden" value="{{serviceId}}" class="serviceId" />
+	<input type="hidden" value="{{serviceType}}" class="serviceType" />
+	<input type="hidden" value="{{apptid}}" class="apptid" />
+	<div class="form-group">
+	<label for="inputDate-{{serviceId}}" class="col-sm-4 control-label">*Appointment Date</label>
+	<div class="col-sm-4">
+	<input type="date" class="form-control" id="old-inputDate-{{serviceId}}" placeholder="Old Date" value="{{selectedDate}}" disabled>
+	</div>
+	<div class="col-sm-4">
+	<input type="date" class="form-control" id="inputDate-{{serviceId}}" placeholder="New Date" value="{{selectedDate}}" min="{{currentdate}}" required>
+	</div>
+	</div>
+	<div class="form-group">
+	<label for="inputTime-{{serviceId}}" class="col-sm-4 control-label">*Appointment Time</label>
+	<div class="col-sm-4">
+
+	<select class="form-control" id="old-inputTime-{{serviceId}}" disabled>
+	{{#availabletimes}}
+	{{#selected}}
+	<option selected>{{value}}</option>
+	{{/selected}}
+	{{^selected}}
+	<option>{{value}}</option>
+	{{/selected}}
+	{{/availabletimes}}
+	</select>
+	</div>
+
+	<div class="col-sm-4">
+	<select class="form-control" id="inputTime-{{serviceId}}" required>
+	{{#availabletimes}}
+	<option>{{value}}</option>
+	{{/availabletimes}}
+	</select>
+	</div>
+	</div>
+	<div class="form-group">
+	<label for="inputJobTask-{{serviceId}}" class="col-sm-4 control-label">*Job Task</label>
+	<div class="col-sm-8">
+	<select class="form-control" id="inputJobTask-{{serviceId}}" required disabled>
+
+	{{#tasks}}
+	{{#selected}}
+	<option selected>{{name}}</option>
+	{{/selected}}
+	{{^selected}}
+	<option>{{name}}</option>
+	{{/selected}}
+	{{/tasks}}
+
+	</select>
+	</div>
+	</div>
+
+	<div class="form-group">
+	<label for="inputRemark-{{serviceId}}" class="col-sm-4 control-label">Remark (Optional)</label>
+	<div class="col-sm-8">
+	<textarea class="form-control" id="inputRemark-{{serviceId}}" placeholder="Remark"></textarea>
+	</div>
+	</div>
+
+	</form>
+	<button type="submit" class="btn btn-default" id="btn-edit-save" data-serviceid="{{serviceId}}">Save</button>
+	<button type="submit" class="btn btn-default" id="btn-edit-cancel" data-serviceid="{{serviceId}}">Back</button>
+	</script>
+
+	<script id="summary" type="text/template">
+	<div class="row">
+	<div class="col-md-12">
+	<div class="table-responsive">
+	<table class="table" style="text-align:left">
+	<thead>
+	<tr><th>Service</th><th>Date</th><th>Time</th><th>Task</th><th>Remark</th></tr>
+	</thead>
+	<tbody>
+	{{#appointments}}
+	<tr>
+	<td>{{serviceType}}</td><td>{{date}}</td><td>{{time}}</td><td>{{task}}</td><td>{{remark}}</td></tr>
+	{{/appointments}}
+	</tbody>
+	</table></div>
+	<button type="submit" class="btn btn-default" id="confirm-appointment" data-refpath="{{fb_refpath}}" data-apptobj="{{appt_obj}}">Confirm Appointment</button>
+	<button type="submit" class="btn btn-default" id="unconfirm-appointment">Cancel Everything</button>
+	</div>
+	</div>
+	</script>
+
+	<script type="text/template" id="leaderboard-template">
+	<table class="table" style="text-align:left;width:256px">
+	<thead>
+	<tr>
+	<th>#</th>
+	<th>Name</th>
+	<th>Avg. Time (min)</th>
+	</tr>
+	</thead>
+	<tbody>
+	{{#.}}
+	<tr>
+	<td>{{Rank}}</td>
+	<td>{{CSOName}}</td>
+	<td id="{{CSOID}}-avgtime">{{Score}}</td>
+	</tr>
+	{{/.}}
+	</tbody>
+	</table>
+	</script>
+
+	<script type="text/template" id="badges-template">
+	{{^.}}
+	<p>No Badges Yet.<br/>Keep playing to earn badges!</p>
+	{{/.}}
+
+	<ul id="badgelist">
+	{{#.}}
+	<li> <img src='img/badges/{{badge}}' class='badgeicon'></li>
+	{{/.}}
+	</ul>
+	</script>
+
+	<script type="text/template" id="cards-template">
+	{{^.}}
+	<p>No Cards Yet.<br/>Keep playing to earn cards!</p>
+	{{/.}}
+
+	<ul id="cardlist">
+	{{#.}}
+	<li> <img src='img/cards/{{card}}' class='cardicon'></li>
+	{{/.}}
+	</ul>
+	</script>
+
+
+	<script type="text/javascript" src="js/moment.min.js"></script>
+	<script type="text/javascript" src="js/prof.js"></script>
+
+</body>
+</html>

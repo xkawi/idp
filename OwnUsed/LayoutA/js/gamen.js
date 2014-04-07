@@ -433,8 +433,8 @@ $(document).ready(function(){
 		//arr = [ sid, sid ];
 
 		fbServ.once('value', function(snapshots){
-			var today = new Date();
-			var dd = today.getDate() + 5;
+			var today = new Date() + 5;
+			var dd = today.getDate();
 			var mm = today.getMonth()+1; //January is 0!
 			var yyyy = today.getFullYear();
 			if(dd<10) {
